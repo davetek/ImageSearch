@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ImagesListViewController.swift
 //  ImageSearch
 //
 //  Created by David Lawrence on 10/10/18.
@@ -8,11 +8,16 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ImagesListViewController: UIViewController {
+    
+    
+    @IBOutlet var tableView: UITableView!
+    var store: ImageStore!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        store.fetchImages()
     }
 
 
