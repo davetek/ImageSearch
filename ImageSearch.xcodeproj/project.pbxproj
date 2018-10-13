@@ -17,6 +17,7 @@
 		2134C6A5216EBAE400C08249 /* PixabayAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134C6A4216EBAE400C08249 /* PixabayAPI.swift */; };
 		2134C6A7216EC4BA00C08249 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134C6A6216EC4BA00C08249 /* ImageStore.swift */; };
 		2134C6A92170186800C08249 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134C6A82170186800C08249 /* Photo.swift */; };
+		2134C6AB2172079600C08249 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134C6AA2172079600C08249 /* Photos.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		2134C6A4216EBAE400C08249 /* PixabayAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixabayAPI.swift; sourceTree = "<group>"; };
 		2134C6A6216EC4BA00C08249 /* ImageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
 		2134C6A82170186800C08249 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		2134C6AA2172079600C08249 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				2134C685216EB33400C08249 /* Main.storyboard */,
 				2134C6A4216EBAE400C08249 /* PixabayAPI.swift */,
 				2134C6A82170186800C08249 /* Photo.swift */,
+				2134C6AA2172079600C08249 /* Photos.swift */,
 				2134C6A6216EC4BA00C08249 /* ImageStore.swift */,
 				2134C68B216EB33600C08249 /* Assets.xcassets */,
 				2134C68D216EB33600C08249 /* LaunchScreen.storyboard */,
@@ -215,6 +218,7 @@
 				2134C68A216EB33400C08249 /* ImageSearch.xcdatamodeld in Sources */,
 				2134C6A7216EC4BA00C08249 /* ImageStore.swift in Sources */,
 				2134C6A5216EBAE400C08249 /* PixabayAPI.swift in Sources */,
+				2134C6AB2172079600C08249 /* Photos.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
