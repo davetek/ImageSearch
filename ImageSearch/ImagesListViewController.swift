@@ -10,14 +10,15 @@ import UIKit
 
 class ImagesListViewController: UIViewController {
     
-    
     @IBOutlet var tableView: UITableView!
     var store: ImageStore!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        store.fetchImages()
+        store.fetchImages(completionHandler: {  [weak self] in
+            print("Number of images found: \(self?.store.photos.hits.count)")
+            })
     }
 
 

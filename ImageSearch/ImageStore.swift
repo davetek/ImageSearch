@@ -10,16 +10,20 @@ import Foundation
 
 class ImageStore {
     
+    //establish variable to hold a Photos instance parsed from JSON data
+    var photos: Photos!
+        
     private let session: URLSession = {
         let config = URLSessionConfiguration.default
         return URLSession(configuration: config)
     }()
     
-    func fetchImages() {
+    func fetchImages(completionHandler: @escaping () -> Void) {
         let url = PixabayAPI.imageSearchURL
         let request = URLRequest(url: url)
         print(request.description)
         print("")
+        //task closure defines task
         let task = session.dataTask(with: request) {
             (data, response, error) -> Void in
             
@@ -28,13 +32,13 @@ class ImageStore {
                     //here create JSONDecoder instance and
                     let jsonDecoder = JSONDecoder()
                     
-                    //recursively decode the JSON data to a Photos object instance
-                    // which contains a string and a 'hits' array of Photos objects
-                    let photos = try jsonDecoder.decode(Photos.self, from: jsonData)
-                    print("number of results: \(photos.hits.count)")
+                    //recursively decode the JSON data to the photos object instance
+                    // which contains a string and a 'hits' array of Photo objects
+                    self.photos = try jsonDecoder.decode(Photos.self, from: jsonData)
+                    print("number of results: \(self.photos.hits.count)")
                     
                     // Now access each Photo contained in the Photos instance
-                    for photo in photos.hits {
+                    for photo in self.photos.hits {
                         print("\(photo.id): \(photo.webformatURL)")
                     }
                     
@@ -49,7 +53,10 @@ class ImageStore {
             } else {
                 print("Unexpected error with the request")
             }
+            completionHandler()
         }
+        
+        //starts background thread to get data
         task.resume()
     }
 }
