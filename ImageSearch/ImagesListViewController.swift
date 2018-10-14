@@ -8,16 +8,52 @@
 
 import UIKit
 
-class ImagesListViewController: UIViewController {
+class ImagesListViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet var tableView: UITableView!
     var store: ImageStore!
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let results = store.photos?.hits else {
+            print("unable to obtain data")
+            return 0
+        }
+        return results.count
+
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "imagesTablePrototypeCell", for: indexPath)
+        
+        if let results = store.photos?.hits {
+            let photo = results[indexPath.row]
+            cell.textLabel?.text = photo.tags
+            cell.detailTextLabel?.text = String(photo.id)
+        }
+        return cell
+
+    }
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.dataSource = self
+        
+        //pass completion handler to function, which interacts with
+        // web service asynchronously, so 'photos' instance is not
+        // available immediately. The completion handler is called
+        // after the request to the web service is complete
         store.fetchImages(completionHandler: {  [weak self] in
-            print("Number of images found: \(self?.store.photos.hits.count)")
+            guard let results = self?.store.photos?.hits else {
+                print("error")
+                return
+            }
+            print("Number of images found: \(results.count)")
+            self?.tableView.reloadData()
             })
     }
 

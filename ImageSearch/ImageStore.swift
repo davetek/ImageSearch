@@ -11,13 +11,16 @@ import Foundation
 class ImageStore {
     
     //establish variable to hold a Photos instance parsed from JSON data
-    var photos: Photos!
+    var photos: Photos?
         
     private let session: URLSession = {
         let config = URLSessionConfiguration.default
         return URLSession(configuration: config)
     }()
     
+    //define function as taking a closure that may not be executed immediately
+    // at the same time the function is executed.
+    // The closure is called at the end of the session.dataTask closure
     func fetchImages(completionHandler: @escaping () -> Void) {
         let url = PixabayAPI.imageSearchURL
         let request = URLRequest(url: url)
@@ -35,16 +38,17 @@ class ImageStore {
                     //recursively decode the JSON data to the photos object instance
                     // which contains a string and a 'hits' array of Photo objects
                     self.photos = try jsonDecoder.decode(Photos.self, from: jsonData)
-                    print("number of results: \(self.photos.hits.count)")
+                   
                     
                     // Now access each Photo contained in the Photos instance
-                    for photo in self.photos.hits {
-                        print("\(photo.id): \(photo.webformatURL)")
-                    }
+//                    for photo in self.photos.hits {
+//                        print("\(photo.id): \(photo.webformatURL)")
+//                    }
                     
                     //leave this for debugging
 //                    let jsonObject = try JSONSerialization.jsonObject(with: jsonData, options: [])
 //                    print(jsonObject)
+                    
                 } catch let error {
                     print("Error creating JSON object: \(error)")
                 }
@@ -53,7 +57,13 @@ class ImageStore {
             } else {
                 print("Unexpected error with the request")
             }
-            completionHandler()
+            
+            //call the completion handler in the view controller
+            // on the main thread
+            DispatchQueue.main.sync {
+                completionHandler()
+            }
+            
         }
         
         //starts background thread to get data
