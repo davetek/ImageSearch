@@ -18,6 +18,9 @@ class ImageDetailViewController: UIViewController {
     @IBOutlet var pageUrlTextField: UITextField!
     @IBOutlet var typeTextField: UITextField!
     
+    @IBOutlet var imageView: UIImageView!
+    
+    
     override func viewDidLoad() {
         super .viewDidLoad()
         
@@ -28,6 +31,24 @@ class ImageDetailViewController: UIViewController {
         userIdTextField.text = String(image.user_id)
         pageUrlTextField.text = image.pageURL.absoluteString
         typeTextField.text = image.type
+        imageView.load(url: image.webformatURL)
         
+    }
+}
+
+//copied from Paul Hudson's Hacking with Swift blog
+//https://www.hackingwithswift.com/example-code/uikit/how-to-load-a-remote-image-url-into-uiimageview
+// This extends UIImageView to load remote images
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
     }
 }

@@ -51,6 +51,8 @@ class ImagesListViewController: UIViewController, UITableViewDataSource {
                 return
             }
             print("Number of images found: \(results.count)")
+
+
             self?.tableView.reloadData()
             })
     }

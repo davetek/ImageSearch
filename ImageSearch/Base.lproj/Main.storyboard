@@ -154,7 +154,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="SVf-CF-byf">
                                         <rect key="frame" x="0.0" y="114" width="359" height="30"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Page URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qD-UU-f6C">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Page URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qD-UU-f6C">
                                                 <rect key="frame" x="0.0" y="0.0" width="75" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -185,7 +185,7 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="248" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="eMi-TH-2Rt">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="248" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="eMi-TH-2Rt">
                                         <rect key="frame" x="0.0" y="190" width="359" height="397"/>
                                     </imageView>
                                 </subviews>
@@ -208,6 +208,7 @@
                     </view>
                     <connections>
                         <outlet property="idTextField" destination="7Qq-Pq-AmU" id="7u5-uG-F6h"/>
+                        <outlet property="imageView" destination="eMi-TH-2Rt" id="rGA-KC-FGv"/>
                         <outlet property="pageUrlTextField" destination="zJk-aE-ozK" id="bWQ-8e-TVh"/>
                         <outlet property="tagsTextField" destination="dd0-Q3-rj4" id="o9P-lZ-TXq"/>
                         <outlet property="typeTextField" destination="MAJ-oP-wmt" id="Kjp-Im-9gU"/>

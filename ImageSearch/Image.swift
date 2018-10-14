@@ -17,12 +17,15 @@ class Image: Decodable {
     let user: String
     let user_id: Int
     let pageURL: URL
-    let webformatURL: URL
-    let webformatHeight: Int
-    let webformatWidth: Int
     let previewURL: URL
     let previewHeight: Int
     let previewWidth: Int
+    let webformatURL: URL
+    let webformatHeight: Int
+    let webformatWidth: Int
+    let largeImageURL: URL
+    let imageHeight: Int
+    let imageWidth: Int
 }
 
 
