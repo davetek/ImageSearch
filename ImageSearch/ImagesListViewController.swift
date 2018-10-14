@@ -14,7 +14,7 @@ class ImagesListViewController: UIViewController, UITableViewDataSource {
     var store: ImageStore!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let results = store.photos?.hits else {
+        guard let results = store.images?.hits else {
             print("unable to obtain data")
             return 0
         }
@@ -26,10 +26,10 @@ class ImagesListViewController: UIViewController, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "imagesTablePrototypeCell", for: indexPath)
         
-        if let results = store.photos?.hits {
-            let photo = results[indexPath.row]
-            cell.textLabel?.text = photo.tags
-            cell.detailTextLabel?.text = String(photo.id)
+        if let results = store.images?.hits {
+            let image = results[indexPath.row]
+            cell.textLabel?.text = image.tags
+            cell.detailTextLabel?.text = String(image.id)
         }
         return cell
 
@@ -42,11 +42,11 @@ class ImagesListViewController: UIViewController, UITableViewDataSource {
         tableView.dataSource = self
         
         //pass completion handler to function, which interacts with
-        // web service asynchronously, so 'photos' instance is not
+        // web service asynchronously, so 'images' instance is not
         // available immediately. The completion handler is called
         // after the request to the web service is complete
         store.fetchImages(completionHandler: {  [weak self] in
-            guard let results = self?.store.photos?.hits else {
+            guard let results = self?.store.images?.hits else {
                 print("error")
                 return
             }
@@ -55,14 +55,16 @@ class ImagesListViewController: UIViewController, UITableViewDataSource {
             })
     }
     
+    //segue handler called when the user taps a table row;
+    // presents and injects the image data into the ImageDetailViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "showImageDetails"?:
             if let row = tableView.indexPathForSelectedRow?.row {
-                if let results = store.photos?.hits {
-                    let photo = results[row]
+                if let results = store.images?.hits {
+                    let image = results[row]
                     let imageDetailsViewController = segue.destination as! ImageDetailViewController
-                    imageDetailsViewController.image = photo
+                    imageDetailsViewController.image = image
                 }
             }
         default:

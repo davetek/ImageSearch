@@ -10,8 +10,8 @@ import Foundation
 
 class ImageStore {
     
-    //establish variable to hold a Photos instance parsed from JSON data
-    var photos: Photos?
+    //establish variable to hold a Images instance parsed from JSON data
+    var images: Images?
         
     private let session: URLSession = {
         let config = URLSessionConfiguration.default
@@ -35,14 +35,14 @@ class ImageStore {
                     //here create JSONDecoder instance and
                     let jsonDecoder = JSONDecoder()
                     
-                    //recursively decode the JSON data to the photos object instance
-                    // which contains a string and a 'hits' array of Photo objects
-                    self.photos = try jsonDecoder.decode(Photos.self, from: jsonData)
+                    //recursively decode the JSON data to the images object instance
+                    // which contains a string and a 'hits' array of Image objects
+                    self.images = try jsonDecoder.decode(Images.self, from: jsonData)
                    
                     
-                    // Now access each Photo contained in the Photos instance
-//                    for photo in self.photos.hits {
-//                        print("\(photo.id): \(photo.webformatURL)")
+                    // Now access each Image contained in the Images instance
+//                    for image in self.images.hits {
+//                        print("\(image.id): \(image.webformatURL)")
 //                    }
                     
                     //leave this for debugging

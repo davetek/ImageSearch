@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Photo: Decodable {
+class Image: Decodable {
 
     //selected fields from initial query response for each photo
     let id: Int
@@ -23,8 +23,6 @@ class Photo: Decodable {
     let previewURL: URL
     let previewHeight: Int
     let previewWidth: Int
-    
-    
 }
 
 

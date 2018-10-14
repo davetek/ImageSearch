@@ -8,8 +8,8 @@
 
 import Foundation
 
-class Photos: Decodable {
+class Images: Decodable {
     
     let totalHits: Int
-    let hits: [Photo]
+    let hits: [Image]
 }

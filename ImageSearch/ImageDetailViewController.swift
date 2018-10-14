@@ -10,7 +10,7 @@ import UIKit
 
 class ImageDetailViewController: UIViewController {
     
-    var image: Photo!
+    var image: Image!
     
     @IBOutlet var idTextField: UITextField!
     @IBOutlet var tagsTextField: UITextField!
