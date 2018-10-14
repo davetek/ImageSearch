@@ -36,8 +36,6 @@ class ImagesListViewController: UIViewController, UITableViewDataSource {
     }
     
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,6 +53,22 @@ class ImagesListViewController: UIViewController, UITableViewDataSource {
             print("Number of images found: \(results.count)")
             self?.tableView.reloadData()
             })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "showImageDetails"?:
+            if let row = tableView.indexPathForSelectedRow?.row {
+                if let results = store.photos?.hits {
+                    let photo = results[row]
+                    let imageDetailsViewController = segue.destination as! ImageDetailViewController
+                    imageDetailsViewController.image = photo
+                }
+            }
+        default:
+            preconditionFailure("Unexpected segue identifier")
+        }
+        
     }
 
 
