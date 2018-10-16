@@ -21,8 +21,10 @@ class ImageStore {
     //define function as taking a closure that may not be executed immediately
     // at the same time the function is executed.
     // The closure is called at the end of the session.dataTask closure
-    func fetchImages(completionHandler: @escaping () -> Void) {
-        let url = PixabayAPI.imageSearchURL
+    func fetchImages(searchTerms: String, completionHandler: @escaping () -> Void) {
+        
+        let url = PixabayAPI.imageSearchURL(withUserSearchTerms: searchTerms)
+        //let url = PixabayAPI.imageSearchURL
         let request = URLRequest(url: url)
         print(request.description)
         print("")
@@ -39,11 +41,6 @@ class ImageStore {
                     // which contains a string and a 'hits' array of Image objects
                     self.images = try jsonDecoder.decode(Images.self, from: jsonData)
                    
-                    
-                    // Now access each Image contained in the Images instance
-//                    for image in self.images.hits {
-//                        print("\(image.id): \(image.webformatURL)")
-//                    }
                     
                     //leave this for debugging
 //                    let jsonObject = try JSONSerialization.jsonObject(with: jsonData, options: [])

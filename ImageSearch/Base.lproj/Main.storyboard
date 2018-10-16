@@ -17,25 +17,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ex1-xw-CWs">
-                                <rect key="frame" x="8" y="72" width="359" height="30"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFl-Id-jjc">
-                                        <rect key="frame" x="0.0" y="0.0" width="53.5" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bWR-ML-U5Y">
-                                        <rect key="frame" x="61.5" y="0.0" width="297.5" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
-                            </stackView>
+                            <searchBar contentMode="topRight" placeholder="Enter terms separated by a space" translatesAutoresizingMaskIntoConstraints="NO" id="nYi-js-sCP">
+                                <rect key="frame" x="0.0" y="72" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="send"/>
+                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QZE-ey-qID">
-                                <rect key="frame" x="0.0" y="122" width="375" height="545"/>
+                                <rect key="frame" x="0.0" y="136" width="375" height="531"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="imagesTablePrototypeCell" textLabel="E40-r7-1iP" detailTextLabel="rI6-s7-CqA" style="IBUITableViewCellStyleSubtitle" id="r6d-Zs-6Ha">
@@ -72,16 +59,17 @@
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QZE-ey-qID" secondAttribute="trailing" id="24t-Ar-kj0"/>
                             <constraint firstItem="QZE-ey-qID" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8ej-hM-PiF"/>
-                            <constraint firstItem="Ex1-xw-CWs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="Bc0-Hn-9QJ"/>
-                            <constraint firstItem="QZE-ey-qID" firstAttribute="top" secondItem="Ex1-xw-CWs" secondAttribute="bottom" constant="20" id="Fh1-JS-DAF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nYi-js-sCP" secondAttribute="trailing" id="NSP-i2-NKd"/>
+                            <constraint firstItem="nYi-js-sCP" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="8" id="PZ3-KS-RKQ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="QZE-ey-qID" secondAttribute="bottom" id="giF-eL-wo2"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ex1-xw-CWs" secondAttribute="trailing" constant="8" id="hPY-yl-b99"/>
-                            <constraint firstItem="Ex1-xw-CWs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="tkS-Ea-fdA"/>
+                            <constraint firstItem="QZE-ey-qID" firstAttribute="top" secondItem="nYi-js-sCP" secondAttribute="bottom" constant="8" id="yKZ-hv-NfY"/>
+                            <constraint firstItem="nYi-js-sCP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zKZ-l3-jyt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Images" id="ztv-Ha-42q"/>
                     <connections>
+                        <outlet property="searchBar" destination="nYi-js-sCP" id="o5c-UB-kr5"/>
                         <outlet property="tableView" destination="QZE-ey-qID" id="Rtw-dj-2UM"/>
                     </connections>
                 </viewController>

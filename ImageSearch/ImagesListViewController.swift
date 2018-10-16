@@ -8,19 +8,48 @@
 
 import UIKit
 
-class ImagesListViewController: UIViewController, UITableViewDataSource {
+class ImagesListViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate {
+    
+    @IBOutlet var searchBar: UISearchBar!
     
     @IBOutlet var tableView: UITableView!
     var store: ImageStore!
     
+    var searchString: String?
+    
+    //UISearchBarDelegate method(s)
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text else {
+            return
+        }
+        print("Search button clicked; search text is: \(searchText)")
+        searchBar.resignFirstResponder()
+        
+        //pass completion handler to function, which interacts with
+        // web service asynchronously, so 'images' instance is not
+        // available immediately. The completion handler is called
+        // after the request to the web service is complete
+        store.fetchImages(searchTerms: searchText, completionHandler: {  [weak self] in
+            guard let results = self?.store.images?.hits else {
+                print("error")
+                return
+            }
+            print("Number of images found: \(results.count)")
+            
+            
+            self?.tableView.reloadData()
+        })
+    }
+    
+    
+    // UITableViewDataSource methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let results = store.images?.hits else {
             print("unable to obtain data")
             return 0
         }
         return results.count
-
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -36,25 +65,14 @@ class ImagesListViewController: UIViewController, UITableViewDataSource {
     }
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchBar.delegate = self
+        
         tableView.dataSource = self
         
-        //pass completion handler to function, which interacts with
-        // web service asynchronously, so 'images' instance is not
-        // available immediately. The completion handler is called
-        // after the request to the web service is complete
-        store.fetchImages(completionHandler: {  [weak self] in
-            guard let results = self?.store.images?.hits else {
-                print("error")
-                return
-            }
-            print("Number of images found: \(results.count)")
-
-
-            self?.tableView.reloadData()
-            })
     }
     
     //segue handler called when the user taps a table row;
